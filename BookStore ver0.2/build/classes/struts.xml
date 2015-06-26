@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<package name="ssh" extends="struts-default">
+		<action name="login" class="Login">
+			<result name="bookList" type="redirectAction">
+				<param name="actionName">BookList</param>
+			</result>
+			<result name="manageView">/manageView.jsp</result>
+			<result name="login_error">/index.jsp</result>
+		</action>
+		
+		<action name="register" class="Register">
+			<result name="success">/bookList.jsp</result>
+			<result name="reg_error">/index.jsp</result>
+		</action>
+		
+		<action name="BookList" class="BookList">
+			<result name="bookList">/bookList.jsp</result>
+		</action>
+		<action name="AddCart" class="AddCart">
+		</action>
+		<action name="UpdateCartItem" class="UpdateCartItem">
+			<result name="success">/ShoppingCart.jsp</result>
+		</action>
+		<action name="DeleteCartItem" class="DeleteCartItem">
+			<result name="success">/ShoppingCart.jsp</result>
+		</action>
+		
+	</package>
+	
+	
+	<!-- <package name="Struts Demo" extends="struts-default">
+		<action name="login" class="controller.Login">
+			<result name="bookList" type="redirectAction">
+				<param name="actionName">BookList</param>
+			</result>
+			<result name="manageView">/manageView.jsp</result>
+			<result name="login_failed">/index.jsp</result>
+		</action>
+		
+		<action name="register" class="controller.Register">
+			<result name="success">/bookList.jsp</result>
+			<result name="reg_exist">/index.jsp</result>
+		</action>
+		
+		<action name="BookList" class="controller.BookList">
+			<result name="bookList">/bookList.jsp</result>
+		</action>
+		
+		<action name="retrieveBook" class="controller.RetrieveBook">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		
+		<action name="retrieveBookByUser" class="controller.RetrieveBook">
+			<result name="success">/bookList.jsp</result>
+		</action>
+		
+		<action name="createBook" class="controller.CreateBook">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		
+		<action name="createUser" class="controller.CreateUser">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		
+		<action name="deleteBook" class="controller.DeleteBook">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		
+		<action name="deleteUser" class="controller.DeleteUser">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		
+		<action name="updateBook" class="controller.UpdateBook">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		
+		<action name="updateUser" class="controller.UpdateUser">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		
+		<action name="logout" class="controller.Logout">
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<action name="addBookItem" class="controller.AddBookItem">
+			<result name="success">/bookList.jsp</result>
+		</action>
+		
+		<action name="updateBookItem" class="controller.UpdateBookItem">
+			<result name="success">/bookList.jsp</result>
+		</action>
+		
+		<action name="deleteBookItem" class="controller.DeleteBookItem">
+			<result name="success">/bookList.jsp</result>
+		</action>
+		
+		<action name="pay" class="controller.Pay">
+			<result name="success">/bookList.jsp</result>
+			<result name="fail">/bookList.jsp</result>
+		</action>
+		
+		<action name="jumpToStatistic" class="controller.Statistic">
+			<result name="success">/statistic.jsp</result>
+		</action>
+	</package> -->
+</struts>
