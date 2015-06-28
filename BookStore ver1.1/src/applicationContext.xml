@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	
+	<!--各个数据Bean的注入  -->
+	<bean id="userinfo" class="entity.Userinfo"></bean>
+	<bean id="bookinfo" class="entity.Bookinfo"></bean>
+	<bean id="orderinfo" class="entity.Orderinfo"></bean>
+	<bean id="orderinfoItem" class="entity.OrderinfoItem"></bean>
+	
+	<!--各个Dao.java的注入  -->
+	<bean id="userinfoDao" class="dao.UserinfoDao"></bean>
+	<bean id="bookinfoDao" class="dao.BookinfoDao"></bean>
+	<bean id="orderinfoDao" class="dao.OrderinfoDao"></bean>
+	<bean id="statisticDao" class="dao.StatisticDao"></bean>
+	<bean id="mongodbDao" class="dao.MongodbDao"></bean>
+	
+	<!--AllDao.java的注入-->
+	<bean id="allDao" class="dao.AllDao">
+		<property name="userinfoDao">
+			<ref bean="userinfoDao" />
+		</property>
+		<property name="bookinfoDao">
+			<ref bean="bookinfoDao" />
+		</property>
+		<property name="orderinfoDao">
+			<ref bean="orderinfoDao" />
+		</property>
+		<property name="statisticDao">
+			<ref bean="statisticDao" />
+		</property>
+		<property name="mongodbDao">
+			<ref bean="mongodbDao"/>
+		</property>
+	</bean>
+	
+	<!--各个Service.java的注入-->
+	<bean id="userinfoService" class="service.UserinfoService">
+		<property name="allDao">
+			<ref bean="allDao"/>
+		</property>
+	</bean>
+	<bean id="bookinfoService" class="service.BookinfoService">
+		<property name="allDao">
+			<ref bean="allDao"/>
+		</property>
+	</bean>
+	<bean id="orderinfoService" class="service.OrderinfoService">
+		<property name="allDao">
+			<ref bean="allDao"/>
+		</property>
+	</bean>
+	<bean id="statisticService" class="service.StatisticService">
+		<property name="allDao">
+			<ref bean="allDao"/>
+		</property>
+	</bean>
+	
+	<!--AllService.java的注入-->
+	<bean id="allService" class="service.AllService">
+		<property name="userinfoService">
+			<ref bean="userinfoService"/>
+		</property>
+		<property name="bookinfoService">
+			<ref bean="bookinfoService"/>
+		</property>
+		<property name="orderinfoService">
+			<ref bean="orderinfoService"/>
+		</property>
+		<property name="statisticService">
+			<ref bean="statisticService"/>
+		</property>
+	</bean>
+	
+	<!--各个action 的注入  -->
+	<bean id="BaseAction" class="controller.BaseAction" scope="prototype">
+		<property name="allService">
+			<ref bean="allService"/>
+		</property>
+	</bean>
+	<bean id="TestAction" class="controller.TestAction" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="Login" class="controller.Login" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="Logout" class="controller.Logout" scope="prototype">
+	</bean>
+	<bean id="Register" class="controller.Register" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="BookList" class="controller.BookList" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="AddCart" class="controller.AddCart" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="UpdateCartItem" class="controller.UpdateCartItem" scope="prototype">
+	</bean>
+	<bean id="DeleteCartItem" class="controller.DeleteCartItem" scope="prototype">
+	</bean>
+	<bean id="Pay" class="controller.Pay" parent="BaseAction" scope="prototype">
+	</bean>
+	
+	<bean id="CreateUser" class="controller.CreateUser" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="UpdateUser" class="controller.UpdateUser" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="DeleteUser" class="controller.DeleteUser" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="CreateBook" class="controller.CreateBook" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="UpdateBook" class="controller.UpdateBook" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="DeleteBook" class="controller.DeleteBook" parent="BaseAction" scope="prototype">
+	</bean>
+	
+	<bean id="RetrieveBook" class="controller.RetrieveBook" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="StatisticUser" class="controller.StatisticUser" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="StatisticBook" class="controller.StatisticBook" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="StatisticCategory" class="controller.StatisticCategory" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="ModifyProfile" class="controller.ModifyProfile" parent="BaseAction" scope="prototype">
+	</bean>
+	<bean id="DetailDisplay" class="controller.DetailDisplay" parent="BaseAction" scope="prototype">
+	</bean>
+</beans>

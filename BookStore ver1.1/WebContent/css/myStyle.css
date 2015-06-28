@@ -1,0 +1,41 @@
+.incr-btn {
+  display: inline-block;
+  width: 20px;
+  height: 38px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  background: #292c2e !important;
+  color: #fff;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: normal;
+  line-height: 34px;
+  -webkit-transition: background 0.3s;
+  -moz-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+.quantity {
+  
+  display: inline-block;
+  border-color: #607d8b;
+  width: 42px;
+  height: 38px;
+  margin: 0 2px;
+  padding-left: 3px;
+  padding-right: 3px;
+  text-align: center;
+
+  padding: 6px 12px;
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.42857143;
+  color: #292c2e;
+  background: transparent;
+  border: 1px solid #ff9016;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}

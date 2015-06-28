@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<package name="ssh" extends="struts-default">
+		<action name="login" class="Login">
+			<result name="bookList" type="redirectAction">
+				<param name="actionName">BookList</param>
+			</result>
+			<result name="manageView">/manageView.jsp</result>
+			<result name="login_error">/index.jsp</result>
+		</action>
+		
+		<action name="register" class="Register">
+			<result name="success">/bookList.jsp</result>
+			<result name="reg_error">/index.jsp</result>
+		</action>
+		
+		<action name="BookList" class="BookList">
+			<result name="bookList">/bookList.jsp</result>
+		</action>
+		<action name="AddCart" class="AddCart">
+		</action>
+		<action name="UpdateCartItem" class="UpdateCartItem">
+			<result name="success">/ShoppingCart.jsp</result>
+		</action>
+		<action name="DeleteCartItem" class="DeleteCartItem">
+			<result name="success">/ShoppingCart.jsp</result>
+		</action>
+		<action name="Pay" class="Pay">
+			<result name="success">/PaySuccess.jsp</result>
+			<result name="fail">/PayFail.jsp</result>
+		</action>
+		<action name="logout" class="Logout">
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="deleteUser" class="DeleteUser">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		<action name="createUser" class="CreateUser">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		<action name="updateUser" class="UpdateUser">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		<action name="createBook" class="CreateBook">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		<action name="deleteBook" class="DeleteBook">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		<action name="updateBook" class="UpdateBook">
+			<result name="success">/manageView.jsp</result>
+		</action>
+		<action name="retrieveBookByUser" class="RetrieveBook">
+			<result name="success">/bookList.jsp</result>
+		</action>
+		<action name="StatisticUser" class="StatisticUser">
+		</action>
+		<action name="StatisticBook" class="StatisticBook">
+		</action>
+		<action name="StatisticCategory" class="StatisticCategory">
+		</action>
+		<action name="ModifyProfile" class="ModifyProfile">
+		</action>
+	</package>
+
+</struts>
